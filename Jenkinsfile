@@ -15,6 +15,8 @@ node {
 	sh('sed -i \'s/__VERSION__/\'${HASH}\'/g\' deployment-b.json')
 	
 	sh('kubectl apply -f deployment-b.json --context="aws_k8s" --kubeconfig="/var/lib/jenkins/.kube/config"')
+
+	def serviceName = sh(script: 'kubectl get svc service-b -o name --context="aws_k8s" --kubeconfig="/var/lib/jenkins/.kube/config" | tr -d \'\n\r\'', returnStdout: true)
 	
 	if (serviceName != 'service/service-b') {
 		sh('kubectl apply -f service-b.json --context="aws_k8s" --kubeconfig="/var/lib/jenkins/.kube/config"')
