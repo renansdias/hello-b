@@ -5,7 +5,7 @@
 		"name": "deployment-b"
 	},
 	"spec": {
-		"replicas": 1,
+		"replicas": 3,
 		"template": {
 			"metadata": {
 				"labels": {
@@ -16,7 +16,7 @@
 				"containers": [
 					{
 						"name": "hello-b",
-						"image": "renansdias/hello-b:1.0.0",
+						"image": "renansdias/hello-b:__VERSION__",
 						"ports": [
 							{
 								"containerPort": 2345,
